@@ -1,11 +1,16 @@
 import tkinter as tk
 import calculator
+
 n = 0
 all_entries = []
 
+FIELDS = 3
+FONT_SIZE = 14
+FONT = "David"
+
 def create_labels(course_frame, names):
     for i in range(len(names)):
-        label = tk.Label(course_frame, text=names[i], font=("David", 14, "bold"))
+        label = tk.Label(course_frame, text=names[i], font=(FONT, FONT_SIZE))
         label.grid(row=n, column=i)  # Place label in the second column
     
 def update_add_button(add_course_button):
@@ -52,18 +57,20 @@ def main():
     create_labels(course_frame, ["Grade", "Weight", "Name"])
     n += 1
     
-    create_course_entry(course_frame, 3, None, None, None) 
+    create_course_entry(course_frame, FIELDS, None, None, None) 
     n += 1
     
     # Button to add a new course entry
-    add_course_button = tk.Button(course_frame, text="Add Course", command=lambda: create_course_entry(course_frame, 3, add_course_button, calculate_button, gpa_label))
+    add_course_button = tk.Button(course_frame, text="Add Course", 
+                        command=lambda: create_course_entry(course_frame, FIELDS, add_course_button, calculate_button, gpa_label))
     add_course_button.grid(row=n, column=0)
 
     # Button to calculate the GPA
-    calculate_button = tk.Button(course_frame, text="Calculate GPA", command=lambda: update_gpa(gpa_label, True))
+    calculate_button = tk.Button(course_frame, text="Calculate GPA", 
+                       command=lambda: update_gpa(gpa_label, True))
     calculate_button.grid(row=n, column=2)
 
-    gpa_label = tk.Label(course_frame, text="GPA: ", font=("David", 14, "bold"))
+    gpa_label = tk.Label(course_frame, text="GPA: ", font=(FONT, FONT_SIZE))
     gpa_label.grid(row=n, column=1)  # Place label in the second column
     
     # Start the application
